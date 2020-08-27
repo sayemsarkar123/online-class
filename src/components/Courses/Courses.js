@@ -7,17 +7,19 @@ import './Courses.css';
 const Courses = () => {
   const [courses, setCourses] = useState(fakeData);
   const [cart, setCart] = useState([]);
-  const addCart = course => setCart([...cart, course]);
+  const addCart = (course) => setCart([...cart, course]);
   return (
     <div className="container">
-      <div className="row align-items-start">
-        <div className="col-md-9">
+      <div className="row">
+        <div className="col-md-12">
           {
-          courses.map(course => <Course key={course.id} course={course} addCart={addCart}></Course>)
+            cart.length ? <Cart cart={cart}></Cart> : null
           }
         </div>
-        <div className="col-md-3">
-          <Cart cart={cart}></Cart>
+        <div className="col-md-12">
+          {courses.map((course) => (
+            <Course key={course.id} course={course} addCart={addCart}></Course>
+          ))}
         </div>
       </div>
     </div>
