@@ -7,13 +7,22 @@ import './Courses.css';
 const Courses = () => {
   const [courses, setCourses] = useState(fakeData);
   const [cart, setCart] = useState([]);
-  const addCart = (course) => setCart([...cart, course]);
+  const addCart = addCourse => {
+    const cartCourses = [...cart, addCourse];
+    const filterCourses = [];
+    cartCourses.forEach(course => filterCourses.indexOf(course) < 0 ? filterCourses.push(course) : null);
+    setCart(filterCourses);
+  };
+  const removeCourse = id => {
+    const filterCourses = cart.filter(course => course.id !== id);
+    setCart(filterCourses);
+  };
   return (
     <div className="container">
       <div className="row">
         <div className="col-md-12">
           {
-            cart.length ? <Cart cart={cart}></Cart> : null
+            cart.length ? <Cart cart={cart} removeCourse={removeCourse}></Cart> : null
           }
         </div>
         <div className="col-md-12">

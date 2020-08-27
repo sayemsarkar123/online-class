@@ -11,7 +11,7 @@ const Cart = (props) => {
       <div className="col-md-9">
         <h5 style={{color: '#ccc'}}>{cart.length} Courses in Cart</h5>
         {
-          cart.map(course => <CartCourse key={course.id} course={course}></CartCourse>)
+          cart.map(course => <CartCourse key={course.id} course={course} removeCourse={props.removeCourse}></CartCourse>)
         }
       </div>
       <div className="col-md-3">
